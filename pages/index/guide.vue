@@ -44,9 +44,6 @@
 			</swiper-item>
 		</swiper>
 		<view class="experience" @tap="launchFlag()">{{experience}}</view>
-		<view class="uniapp-img">
-			<image src="../../static/guide/uniapp4@2x.png" mode="aspectFit"></image>
-		</view>
 	</view>
 </template>
 
@@ -85,6 +82,7 @@
 		height: 100%;
 		background-size: 100% auto;
 		padding: 0;
+		background-color: #FFFFFF;
 	}
 
 	.swiper {
@@ -142,12 +140,12 @@
 
 	.jump-over {
 		right: 45upx;
-		top: 125upx;
+		top: 45upx;
 	}
 
 	.experience {
 		right: 50%;
 		margin-right: -105upx;
-		bottom: 0;
+		/* bottom: 0; */
 	}
 </style>
