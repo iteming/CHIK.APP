@@ -22,6 +22,7 @@
 				 */
 				try {
 				    const value = uni.getStorageSync('launchFlag');
+					console.log('启动数据', value);
 				    if (value) {
 				        if (value == true) {
 				            uni.switchTab({
@@ -35,7 +36,7 @@
 				    } else {
 				        uni.setStorage({
 				            key: 'launchFlag',
-				            data: true,
+				            data: false,
 				            success: function() {
 								console.log('存储launchFlag');
 							}

@@ -4,8 +4,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "启动页",
-				"titleNView": false
+				"navigationBarTitleText": "启动页"
 			}
 		},
 		{
