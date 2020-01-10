@@ -1,6 +1,5 @@
 <template>
 	<view class="content">
-		<view class="jump-over" @tap="launchFlag()">{{jumpover}}</view>
 		<swiper class="swiper" :autoplay="autoplay" :duration="duration">
 			<swiper-item>
 				<view class="swiper-item">
@@ -43,7 +42,10 @@
 				</view>
 			</swiper-item>
 		</swiper>
-		<view class="experience" @tap="launchFlag()">{{experience}}</view>
+		<view class="experience" >
+			<view class="text" @tap="launchFlag()">{{experience}}</view>
+			<view class="text" @tap="launchFlag()">{{jumpover}}</view>
+		</view>
 	</view>
 </template>
 
@@ -74,7 +76,7 @@
 		}
 	}
 </script>
-<style>
+<style lang="less">
 	page,
 	.content {
 		width: 100%;
@@ -130,12 +132,15 @@
 		position: absolute;
 		height: 60upx;
 		line-height: 60upx;
-		padding: 0 40upx;
-		border-radius: 30upx;
 		font-size: 32upx;
 		color: #454343;
-		border: 1px solid #454343;
 		z-index: 999;
+		
+		.text {
+			padding: 0 40upx;
+			border-radius: 30upx;
+			border: 1px solid #454343;
+		}
 	}
 
 	.jump-over {

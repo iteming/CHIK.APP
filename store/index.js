@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import ajax from "@/lib/ajax.js"
+// import ajax from "@/lib/ajax.js"
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -63,53 +63,52 @@ const store = new Vuex.Store({
 		}
 	},
 	actions: {
-		async getArticles(ctx,params){
-			uni.showLoading({
-			    title: '加载中'
-			});
-			let result = await ajax.get({
-				url:'/v2/movie/top250',
-				data:{
-					start:0,
-					count:5
-				}
-			});
-			uni.hideLoading()
-			ctx.commit("SET_ARTICLES",result.subjects)
-			return result.subjects
-		},
-		async getDetail(ctx,params){
-			// /v2/movie/subject/:id
-			uni.showLoading({
-			    title: '加载中'
-			});
-			let result = await ajax.get({
-				url:'/v2/movie/subject/'+params.id,
-			});
-			uni.hideLoading();
-			return result;
-		},
-		async getCategories(){
-			uni.showLoading({
-			    title: '加载中'
-			});
-			let result = await ajax.get({
-				url:'https://www.gek6.cn/index.php?rest_route=/wp/v2/categories',
-			});
-			uni.hideLoading();
-			return result;
-		},
-		
-		async getArticlesByCate(ctx,params){
-			uni.showLoading({
-			    title: '加载中'
-			});
-			let result = await ajax.get({
-				url:"http://www.gek6.cn/index.php?rest_route=%2Fwp%2Fv2%2Fposts&categories="+params.id,
-			});
-			uni.hideLoading();
-			return result;
-		}
+		// async getArticles(ctx,params){
+		// 	uni.showLoading({
+		// 	    title: '加载中'
+		// 	});
+		// 	let result = await ajax.get({
+		// 		url:'/v2/movie/top250',
+		// 		data:{
+		// 			start:0,
+		// 			count:5
+		// 		}
+		// 	});
+		// 	uni.hideLoading()
+		// 	ctx.commit("SET_ARTICLES",result.subjects)
+		// 	return result.subjects
+		// },
+		// async getDetail(ctx,params){
+		// 	// /v2/movie/subject/:id
+		// 	uni.showLoading({
+		// 	    title: '加载中'
+		// 	});
+		// 	let result = await ajax.get({
+		// 		url:'/v2/movie/subject/'+params.id,
+		// 	});
+		// 	uni.hideLoading();
+		// 	return result;
+		// },
+		// async getCategories(){
+		// 	uni.showLoading({
+		// 	    title: '加载中'
+		// 	});
+		// 	let result = await ajax.get({
+		// 		url:'https://www.gek6.cn/index.php?rest_route=/wp/v2/categories',
+		// 	});
+		// 	uni.hideLoading();
+		// 	return result;
+		// },
+		// async getArticlesByCate(ctx,params){
+		// 	uni.showLoading({
+		// 	    title: '加载中'
+		// 	});
+		// 	let result = await ajax.get({
+		// 		url:"http://www.gek6.cn/index.php?rest_route=%2Fwp%2Fv2%2Fposts&categories="+params.id,
+		// 	});
+		// 	uni.hideLoading();
+		// 	return result;
+		// }
 	}
 })
 
