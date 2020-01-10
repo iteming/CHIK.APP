@@ -1,71 +1,114 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import ajax from "@/lib/ajax.js"
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
 	state: {
-		hasLogin: false,
-		loginProvider: "",
-		openid: null,
-		testvuex:false,
-        colorIndex: 0,
-        colorList: ['#FF0000','#00FF00','#0000FF']
+		themeColor:'#888888',
+		bannerDotColor:"#888888",
+		bannerDotActiveColor:"#888888",
+		tabbar:[],
+		tabbarTextColor:'',
+		tabbarTextActiveColor:"",
+		textColor:"",
+		descTextColor:"",
+		priceColor:"",
+		articles:[],
+		showLoading:false,
 	},
 	mutations: {
-		login(state, provider) {
-			state.hasLogin = true;
-			state.loginProvider = provider;
+		SET_COLOR(state,colors){
+			// 主题色
+			state.themeColor = colors.themeColor
+			// 轮播小点 未选中
+			state.bannerDotColor = colors.bannerDotColor
+			// 轮播小点 选中
+			state.bannerDotActiveColor = colors.bannerDotActiveColor
+			// 文字主色
+			state.textColor = colors.textColor
+			// 价格色
+			state.priceColor = colors.priceColor
+			// 描述色
+			state.descTextColor = colors.descTextColor
+			// 底部菜单文字 选中
+			state.tabbarTextActiveColor = colors.tabbarTextActiveColor
+			// 底部菜单文字 未选中
+			state.tabbarTextColor = colors.tabbarTextColor
 		},
-		logout(state) {
-			state.hasLogin = false
-			state.openid = null
+	 
+		
+		SET_ARTICLES(state,list){
+			console.log('SET_ARTICLES',list)
+			state.articles = list;
 		},
-		setOpenid(state, openid) {
-			state.openid = openid
+		
+		SET_TABBAR(state,tabbar){
+			state.tabbar = tabbar||[]
 		},
-		setTestTrue(state){
-			state.testvuex = true
+		
+		showLoading(state,sec){
+			if(sec){
+				state.showLoading = true;
+				setTimeout(()=>{
+					state.showLoading = false;
+				},sec*1000)
+			}else{
+				state.showLoading = true;
+			}
+			
 		},
-		setTestFalse(state){
-			state.testvuex = false
-		},
-        setColorIndex(state,index){
-            state.colorIndex = index
-        }
+		hideLoading(state){
+			state.showLoading = false;
+		}
 	},
-    getters:{
-        currentColor(state){
-            return state.colorList[state.colorIndex]
-        }
-    },
 	actions: {
-		// lazy loading openid
-		getUserOpenId: async function ({
-			commit,
-			state
-		}) {
-			return await new Promise((resolve, reject) => {
-				if (state.openid) {
-					resolve(state.openid)
-				} else {
-					uni.login({
-						success: (data) => {
-							commit('login')
-							setTimeout(function () { //模拟异步请求服务器获取 openid
-								const openid = '123456789'
-								console.log('uni.request mock openid[' + openid + ']');
-								commit('setOpenid', openid)
-								resolve(openid)
-							}, 1000)
-						},
-						fail: (err) => {
-							console.log('uni.login 接口调用失败，将无法正常使用开放接口等服务', err)
-							reject(err)
-						}
-					})
+		async getArticles(ctx,params){
+			uni.showLoading({
+			    title: '加载中'
+			});
+			let result = await ajax.get({
+				url:'/v2/movie/top250',
+				data:{
+					start:0,
+					count:5
 				}
-			})
+			});
+			uni.hideLoading()
+			ctx.commit("SET_ARTICLES",result.subjects)
+			return result.subjects
+		},
+		async getDetail(ctx,params){
+			// /v2/movie/subject/:id
+			uni.showLoading({
+			    title: '加载中'
+			});
+			let result = await ajax.get({
+				url:'/v2/movie/subject/'+params.id,
+			});
+			uni.hideLoading();
+			return result;
+		},
+		async getCategories(){
+			uni.showLoading({
+			    title: '加载中'
+			});
+			let result = await ajax.get({
+				url:'https://www.gek6.cn/index.php?rest_route=/wp/v2/categories',
+			});
+			uni.hideLoading();
+			return result;
+		},
+		
+		async getArticlesByCate(ctx,params){
+			uni.showLoading({
+			    title: '加载中'
+			});
+			let result = await ajax.get({
+				url:"http://www.gek6.cn/index.php?rest_route=%2Fwp%2Fv2%2Fposts&categories="+params.id,
+			});
+			uni.hideLoading();
+			return result;
 		}
 	}
 })

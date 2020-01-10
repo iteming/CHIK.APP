@@ -67,10 +67,9 @@
 					key: 'launchFlag',
 					data: true,
 				});
-				uni.switchTab({
+				uni.redirectTo({
 					url: '/pages/tabBar/component/component'
 				});
-
 			}
 		}
 	}
@@ -83,6 +82,7 @@
 		background-size: 100% auto;
 		padding: 0;
 		background-color: #FFFFFF;
+		margin-top: 50upx;
 	}
 
 	.swiper {
