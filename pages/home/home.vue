@@ -38,8 +38,6 @@
 				 mode="widthFix"></image>
 			</view>
 		</view>
-
-		首页推荐
 	</view>
 </template>
 
