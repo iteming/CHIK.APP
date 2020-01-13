@@ -1,48 +1,68 @@
+
+
+
 <template>
-	<view>
-		<basics v-if="PageCur=='basics'"></basics>
-		<components v-if="PageCur=='component'"></components>
-		<plugin v-if="PageCur=='plugin'"></plugin>
+	<view class="content">
 		
-		
-		<view class="cu-bar tabbar bg-white shadow foot">
-			<view class="action" @click="NavChange" data-cur="basics">
-				<view class='cuIcon-cu-image'>
-					<image :src="'/static/tabbar/basics' + [PageCur=='basics'?'_cur':''] + '.png'"></image>
-				</view>
-				<view :class="PageCur=='basics'?'text-green':'text-gray'">元素</view>
-			</view>
-			<view class="action" @click="NavChange" data-cur="component">
-				<view class='cuIcon-cu-image'>
-					<image :src="'/static/tabbar/component' + [PageCur == 'component'?'_cur':''] + '.png'"></image>
-				</view>
-				<view :class="PageCur=='component'?'text-green':'text-gray'">组件</view>
-			</view>
-			<view class="action" @click="NavChange" data-cur="plugin">
-				<view class='cuIcon-cu-image'>
-					<image :src="'/static/tabbar/plugin' + [PageCur == 'plugin'?'_cur':''] + '.png'"></image>
-				</view>
-				<view :class="PageCur=='plugin'?'text-green':'text-gray'">扩展</view>
-			</view>
-		</view>
 	</view>
 </template>
 
 <script>
 	export default {
 		data() {
-		return {
-				PageCur: 'basics'
+			return {
 			}
 		},
+		onLoad(){
+			this.loadExecution()
+		},
 		methods: {
-			NavChange: function(e) {
-				this.PageCur = e.currentTarget.dataset.cur
+			loadExecution: function(){
+				/**
+				 * 获取本地存储中launchFlag的值
+				 * 若存在，说明不是首次启动，直接进入首页；
+				 * 若不存在，说明是首次启动，进入引导页；
+				 */
+				try {
+				    const value = uni.getStorageSync('launchFlag');
+					console.log('启动数据', value);
+				    if (value) {
+				        if (value == true) {
+				            uni.redirectTo({
+				                url: '/pages/index/index'
+				            });
+				        } else {
+				            uni.redirectTo({
+				                url: '/pages/index/guide'
+				            });
+				        }
+				    } else {
+				        uni.setStorage({
+				            key: 'launchFlag',
+				            data: false,
+				            success: function() {
+								console.log('存储launchFlag');
+							}
+				        });
+				        uni.redirectTo({
+				            url: '/pages/index/guide'
+				        });
+				    }
+				} catch(e) { 
+					// error 
+					uni.setStorage({ 
+						key: 'launchFlag', 
+						data: true, 
+						success: function () {
+							console.log('error时存储launchFlag');
+						} 
+					}); 
+					uni.redirectTo({ url: '/pages/index/guide' }); 
+				}
 			}
 		}
 	}
 </script>
-
 <style>
-
+	
 </style>
