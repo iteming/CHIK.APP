@@ -7,7 +7,8 @@
 			<swiper-item v-for="(item,index) in swiperList" :key="index" :class="cardCur==index?'cur':''">
 				<view class="swiper-item">
 					<image :src="item.url" mode="aspectFill" v-if="item.type=='image'"></image>
-					<video :src="item.url" loop muted :enable-progress-gesture="false" :show-play-btn="false" :controls="false" objectFit="cover" v-if="item.type=='video'"></video>
+					<video :src="item.url" loop muted :enable-progress-gesture="false" :show-play-btn="false" :controls="false"
+					 objectFit="cover" v-if="item.type=='video'"></video>
 					<view class="title">肉夹馍</view>
 					<view class="user">
 						<image class="user-avatar" src="https://s1.st.meishij.net/user/51/159/ns1102301_78054.jpg" mode="aspectFill"></image>
@@ -16,6 +17,27 @@
 				</view>
 			</swiper-item>
 		</swiper>
+
+		<view class="text-center text-xxl text-bold">编辑精选</view>
+		<view class="con">
+			<i></i>
+			<p>SELECT</p>
+		</view>
+
+		<view class="padding bg-white">
+			<view class="box">
+				<image class="item bg-grey " src="https://s1.st.meishij.net/r/23/159/2414773/a2414773_157874221566808.jpg"
+				 mode="widthFix"></image>
+				<image class="item bg-grey " src="https://s1.st.meishij.net/r/24/80/13145024/a13145024_157881633102074.jpg"
+				 mode="widthFix"></image>
+				<image class="item bg-grey " src="https://s1.st.meishij.net/r/93/190/13922593/a13922593_157890202768641.jpg"
+				 mode="widthFix"></image>
+				<image class="item bg-grey " src="https://s1.st.meishij.net/r/93/190/13922593/a13922593_157890202768641.jpg"
+				 mode="widthFix"></image>
+				<image class="item bg-grey " src="https://s1.st.meishij.net/r/23/159/2414773/a2414773_157874171388915.jpg"
+				 mode="widthFix"></image>
+			</view>
+		</view>
 
 		首页推荐
 	</view>
@@ -92,6 +114,55 @@
 </script>
 
 <style lang="less">
+	// 瀑布流
+	.box {
+		display: flex;
+		flex-flow: column wrap;
+		height: 1500rpx;
+		
+		.item {
+			margin: 10px;
+			width: calc(100%/2 - 20px);
+			border-radius: 20rpx;
+		}
+		
+		.item img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	// 横线到底了
+	.con {
+		position: relative;
+		height: 5rpx;
+		line-height: 5rpx;
+		margin: 30rpx auto;
+		text-align: center;
+
+		p {
+			display: inline-block;
+			font-size: 20rpx;
+			color: #c1c1c1;
+			background: #FFFFFF;
+			padding: 0 20rpx;
+			text-align: center;
+			margin: 0 auto;
+			position: relative;
+			z-index: 2;
+		}
+
+		i {
+			display: block;
+			height: 1rpx;
+			background: #e1e1e1;
+			position: absolute;
+			top: 5rpx;
+			width: 100%;
+		}
+	}
+
+	// swiper 
 	.swiper-item image,
 	.swiper-item video {
 		width: 100%;
