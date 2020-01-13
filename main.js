@@ -17,6 +17,12 @@ Vue.component('cu-custom', cuCustom)
 import navCustom from './components/struggler-navigationCustom/navigation-custom.vue'
 Vue.component('nav-custom', navCustom)
 
+// 首页推荐
+import indexHome from './pages/home/home.vue'
+Vue.component('index-home', indexHome)
+// 我的
+import userHome from './pages/user/home.vue'
+Vue.component('user-home', userHome)
 
 
 

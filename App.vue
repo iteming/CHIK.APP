@@ -59,6 +59,11 @@
 	@import "colorui/main.css";
 	@import "colorui/icon.css";
 
+	.content {
+		background-color: #FFFFFF;
+		margin-bottom:100rpx;
+	}
+	
 	.nav-list {
 		display: flex;
 		flex-wrap: wrap;

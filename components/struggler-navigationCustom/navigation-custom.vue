@@ -18,13 +18,25 @@
 				</view>
 			</view>
 			<!-- custom button -->
-			<view v-if="[3,4].indexOf(config.type)!= -1" @click="conduct_" :class="config.type == 3?'navigation-bar-custom-capsule':'navigation-bar-custom-textbox'"
+			<view v-if="[3,4].indexOf(config.type) != -1" @click="conduct_" :class="config.type == 3?'navigation-bar-custom-capsule':'navigation-bar-custom-textbox'"
 			 :style="{top:marginTop}">
 				<image v-if="config.menuIcon" class="custom-icon" :src="config.menuIcon"></image>
 				<text class="custom-describe">{{config.menuText}}</text>
 			</view>
+
+			<!-- custom search -->
+			<view v-if="[5].indexOf(config.type) != -1" @click="search_" class="navigation-bar-custom-capsule" 
+			 :style="{top:marginTop, width: '70%'}">
+				<view class="cu-bar search bg-white" style="width: 100%;">
+					<view class="search-form round">
+						<text class="cuIcon-search"></text>
+						<input :adjust-position="false" type="text" placeholder="搜索图片、文章、视频" confirm-type="search"></input>
+					</view>
+				</view>
+			</view>
+
 			<!-- title -->
-			<view class="navigation-bar-title" :style="'margin-top:'+marginTop+';color:'+config.fontcolor">{{config.title}}</view>
+			<view v-if="[5].indexOf(config.type) == -1" class="navigation-bar-title" :style="'margin-top:'+marginTop+';color:'+config.fontcolor">{{config.title}}</view>
 			<!-- linear background -->
 			<view v-if="config.linear" class="navigation-bar-linear" :style="{height:height,background:config.bgcolor,opacity:scrollTop/scrollMaxHeight}"></view>
 		</view>
@@ -107,12 +119,22 @@
 			},
 			conduct_() {
 				this.$emit("customConduct")
+			},
+			search_() {
+				this.$emit("customSearch")
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
+	.cu-bar .search-form {
+		margin: 0;
+		input {
+			font-size: 24rpx;
+		}
+	}
+
 	.navigation-bar {
 		width: 100%;
 		box-sizing: border-box;
@@ -154,7 +176,7 @@
 				left: 10px;
 				background-color: rgba(255, 255, 255, .5);
 				border-radius: 16px;
-				padding: 0 23upx;
+				// padding: 0 23upx;
 				// border:0.5px solid rgba(255,255,255,.3);
 				box-sizing: border-box;
 				overflow: hidden;
@@ -177,7 +199,7 @@
 				justify-content: center;
 				height: 32px;
 				left: 0px;
-				padding: 0 23upx;
+				// padding: 0 23upx;
 				// border:0.5px solid rgba(255,255,255,.3);
 				box-sizing: border-box;
 				overflow: hidden;
