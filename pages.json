@@ -19,6 +19,12 @@
 				"navigationBarTitleText": "首页"
 			}
 		},
+		{
+			"path": "pages/user/waterfall",
+			"style": {
+				"navigationBarTitleText": "瀑布流"
+			}
+		},
 		
 		// color ui 相关组件
 		{

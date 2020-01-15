@@ -76,10 +76,10 @@
 			}
 		},
 		updated() {
-			console.log(this.config)
+			console.log('updated', this.config)
 		},
 		mounted() {
-			console.log(this.config)
+			console.log('mounted', this.config)
 		},
 		props: {
 			config: {

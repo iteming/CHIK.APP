@@ -96,7 +96,9 @@
 		onPageScroll(e) {
 			this.scrollTop = e.scrollTop;
 		},
-		onLoad() {},
+		mounted() {
+			console.log('home mounted')
+		},
 		methods: {
 			//当config type 为 5 的时候 自定义methods
 			customSearch() {

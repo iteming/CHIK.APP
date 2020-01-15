@@ -25,7 +25,9 @@ import userHome from './pages/user/home.vue'
 Vue.component('user-home', userHome)
 
 
-
+// 瀑布流
+import waterfall from 'vue-waterfall2'
+Vue.use(waterfall)
 
 // 添加全局 store 属性
 import store from './store'
