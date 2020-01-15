@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<nav-custom :config="config" @customSearch="customSearch" :scrollTop="scrollTop" :scrollMaxHeight="scrollMaxHeight"></nav-custom>
+		<navigation-custom :config="config" @customSearch="customSearch" :scrollTop="scrollTop" :scrollMaxHeight="scrollMaxHeight" />
 
 		<swiper class="card-swiper" :indicator-dots="false" :circular="true" :autoplay="false" interval="5000" duration="500"
 		 @change="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
@@ -24,27 +24,18 @@
 			<p>SELECT</p>
 		</view>
 
-		<view class="padding bg-white">
-			<view class="box">
-				<image class="item bg-grey " src="https://s1.st.meishij.net/r/23/159/2414773/a2414773_157874221566808.jpg"
-				 mode="widthFix"></image>
-				<image class="item bg-grey " src="https://s1.st.meishij.net/r/24/80/13145024/a13145024_157881633102074.jpg"
-				 mode="widthFix"></image>
-				<image class="item bg-grey " src="https://s1.st.meishij.net/r/93/190/13922593/a13922593_157890202768641.jpg"
-				 mode="widthFix"></image>
-				<image class="item bg-grey " src="https://s1.st.meishij.net/r/93/190/13922593/a13922593_157890202768641.jpg"
-				 mode="widthFix"></image>
-				<image class="item bg-grey " src="https://s1.st.meishij.net/r/23/159/2414773/a2414773_157874171388915.jpg"
-				 mode="widthFix"></image>
-			</view>
-		</view>
+		<waterfall-flow :list="list" :loading="loading" @click="choose"></waterfall-flow>
 	</view>
 </template>
 
 <script>
+	// 模拟 JSON 数据
+	const waterfalldata = require('@/common/json/waterfalldata.json');
+	const swiperdata = require('@/common/json/swiperdata.json');
 	export default {
 		data() {
 			return {
+				// 导航配置
 				config: {
 					title: "我是标题", //title
 					type: 5, //type 1，3胶囊 2，4无胶囊模式
@@ -56,48 +47,25 @@
 				scrollTop: 0, // 当linear为true的时候需要通过onpagescroll传递参数
 				scrollMaxHeight: 200, //滑动的高度限制，超过这个高度即背景全部显示
 
-
+				// 卡片配置
 				cardCur: 0,
-				swiperList: [{
-					id: 7,
-					type: 'video',
-					url: 'http://q417edx0f.bkt.clouddn.com/uuid.mp4'
-				}, {
-					id: 0,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
-				}, {
-					id: 1,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg',
-				}, {
-					id: 2,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
-				}, {
-					id: 3,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
-				}, {
-					id: 4,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg'
-				}, {
-					id: 5,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg'
-				}, {
-					id: 6,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
-				}],
+				swiperList: swiperdata,
+
+				// 瀑布流配置
+				page: 1,
+				start: 0,
+				end: 0,
+				list: [], // 列表
+				loading: true,
 			}
 		},
 		onPageScroll(e) {
+			// 这里不会被触发，需要使用父子组件调用
 			this.scrollTop = e.scrollTop;
 		},
 		mounted() {
 			console.log('home mounted')
+			this.getList();
 		},
 		methods: {
 			//当config type 为 5 的时候 自定义methods
@@ -109,27 +77,42 @@
 				console.log("@change=cardSwiper");
 				this.cardCur = e.detail.current
 			},
+
+			// 瀑布流 选中
+			choose(item) {
+				// item 返回选中 JSON 对象
+				console.log(item)
+			},
+			reachBottom() {
+				console.log('home onReachBottom')
+				this.page++;
+				this.loading = true;
+				this.getList();
+			},
+			// 瀑布流 模拟加载数据
+			getList() {
+				if (this.list.length < waterfalldata.list.length) {
+					this.loading = true;
+					setTimeout(() => {
+						this.end = this.page * 10;
+						this.list = this.list.concat(waterfalldata.list.slice(this.start, this.end));
+						this.start = this.end;
+						// 延迟 120 毫秒隐藏加载动画，为了跟组件里面的 100 毫秒定位有个平缓过度
+						setTimeout(() => {
+							this.loading = false;
+						}, 120);
+					}, 1000)
+				} else {
+					this.loading = false;
+				}
+			}
 		}
 	}
 </script>
 
 <style lang="less">
-	// 瀑布流
-	.box {
-		display: flex;
-		flex-flow: column wrap;
-		height: 1500rpx;
-		
-		.item {
-			margin: 10px;
-			width: calc(100%/2 - 20px);
-			border-radius: 20rpx;
-		}
-		
-		.item img {
-			width: 100%;
-			height: 100%;
-		}
+	.content {
+		margin-bottom: 200rpx;
 	}
 
 	// 横线到底了

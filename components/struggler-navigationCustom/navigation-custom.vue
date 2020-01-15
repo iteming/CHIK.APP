@@ -25,8 +25,7 @@
 			</view>
 
 			<!-- custom search -->
-			<view v-if="[5].indexOf(config.type) != -1" @click="search_" class="navigation-bar-custom-capsule" 
-			 :style="{top:marginTop, width: '70%'}">
+			<view v-if="[5].indexOf(config.type) != -1" @click="search_" class="navigation-bar-custom-capsule" :style="{top:marginTop, width: '70%'}">
 				<view class="cu-bar search bg-white" style="width: 100%;">
 					<view class="search-form round">
 						<text class="cuIcon-search"></text>
@@ -36,7 +35,7 @@
 			</view>
 
 			<!-- title -->
-			<view v-if="[5].indexOf(config.type) == -1" class="navigation-bar-title" :style="'margin-top:'+marginTop+';color:'+config.fontcolor">{{config.title}}</view>
+			<view v-if="[5].indexOf(config.type) == -1" class="navigation-bar-title" :style="{'margin-top':marginTop,'color':(!config.transparent&&!config.linear)?config.fontcolor:'black'}">{{config.title}}</view>
 			<!-- linear background -->
 			<view v-if="config.linear" class="navigation-bar-linear" :style="{height:height,background:config.bgcolor,opacity:scrollTop/scrollMaxHeight}"></view>
 		</view>
@@ -113,7 +112,10 @@
 				});
 			},
 			home_() {
-				uni.switchTab({
+				// uni.switchTab({
+				// 	url: "/pages/index/index"
+				// })
+				uni.redirectTo({
 					url: "/pages/index/index"
 				})
 			},
@@ -130,6 +132,7 @@
 <style lang="scss">
 	.cu-bar .search-form {
 		margin: 0;
+
 		input {
 			font-size: 24rpx;
 		}
@@ -165,6 +168,8 @@
 				white-space: nowrap;
 				text-overflow: ellipsis;
 				overflow: hidden;
+				text-align:center;
+				color: black;
 			}
 
 			.navigation-bar-custom-capsule {
@@ -176,8 +181,8 @@
 				left: 10px;
 				background-color: rgba(255, 255, 255, .5);
 				border-radius: 16px;
-				// padding: 0 23upx;
-				// border:0.5px solid rgba(255,255,255,.3);
+				padding: 0 23upx;
+				border: 0.5px solid rgba(255, 255, 255, .3);
 				box-sizing: border-box;
 				overflow: hidden;
 				z-index: 9;

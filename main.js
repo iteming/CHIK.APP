@@ -15,7 +15,7 @@ Vue.component('cu-custom', cuCustom)
 
 // 注册组件 自定义 navigation : 胶囊模式
 import navCustom from './components/struggler-navigationCustom/navigation-custom.vue'
-Vue.component('nav-custom', navCustom)
+Vue.component('navigation-custom', navCustom)
 
 // 首页推荐
 import indexHome from './pages/home/home.vue'
@@ -24,10 +24,9 @@ Vue.component('index-home', indexHome)
 import userHome from './pages/user/home.vue'
 Vue.component('user-home', userHome)
 
-
-// 瀑布流
-import waterfall from 'vue-waterfall2'
-Vue.use(waterfall)
+// 瀑布流组件
+import WaterfallFlow from './components/nairenk-waterfall-flow/nairenk-waterfall-flow.vue';
+Vue.component('waterfall-flow', WaterfallFlow)
 
 // 添加全局 store 属性
 import store from './store'

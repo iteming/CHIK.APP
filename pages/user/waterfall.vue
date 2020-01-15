@@ -1,83 +1,91 @@
 <template>
-	<!-- /*
-	  注意:
-	  1. gutterWidth需要与width一起使用才会生效，否则会进行自适应宽度(使用rem布局时，需先计算出自适应后的宽度再传值)
-	  2. 使用了`waterfall`的父组件,如果样式存在问题，可去掉css `scoped`尝试一下
-	*/ -->
-	<view class="container-water-fall">
-		<view>
-			<button @tap="loadmore()">loadmore</button> 
-			<button @tap="mix()">mix</button> 
-			<button @tap="switchCol('5')">5列</button>
-			<button @tap="switchCol('8')">8列</button> 
-			<button @tap="switchCol('10')">10列</button> 
-		</view>
-		
-		<waterfall :col='col' :width="itemWidth" :gutterWidth="gutterWidth" :data="data" @loadmore="loadmore" @scroll="scroll">
-			<template>
-				<view class="cell-item" v-for="(item,index) in data" v-bind:key="index">
-					<img v-if="item.img" :src="item.img" alt="加载错误" mode="widthFix"/>
-					<!-- <img v-if="item.img" :lazy-src="item.img" alt="加载错误" /> -->
-					<!-- <view class="item-body">
-						<view class="item-desc">{{item.title}}</view>
-						<view class="item-footer">
-							<view class="avatar" :style="{backgroundImage : 'url({{item.avatar}})' }"></view>
-							<view class="name">{{item.user}}</view>
-							<view class="like" :class="item.liked?'active':''">
-								<i></i>
-								<view class="like-total">{{item.liked}}</view>
-							</view>
-						</view>
-					</view> -->
-				</view>
-			</template>
-		</waterfall>
+	<view>
+		<navigation-custom :config="config" :scrollTop="scrollTop" :scrollMaxHeight="scrollMaxHeight" />
+		<waterfall-flow :list="list" :loading="loading" @click="choose"></waterfall-flow>
 	</view>
 </template>
 
 <script>
+	// 模拟 JSON 数据
+	const data = require('@/common/json/waterfalldata.json');
 	export default {
 		data() {
 			return {
-				data: [
-					{"img":"https://s1.st.meishij.net/r/23/159/2414773/a2414773_157874221566808.jpg"},
-					{"img":"https://s1.st.meishij.net/r/24/80/13145024/a13145024_157881633102074.jpg"},
-					{"img":"https://s1.st.meishij.net/r/93/190/13922593/a13922593_157890202768641.jpg"},
-					{"img":"https://s1.st.meishij.net/r/93/190/13922593/a13922593_157890202768641.jpg"},
-					{"img":"https://s1.st.meishij.net/r/23/159/2414773/a2414773_157874171388915.jpg"},
-					{"img":"https://s1.st.meishij.net/r/23/159/2414773/a2414773_157874221566808.jpg"},
-				],
-				col: 2,
-				itemWidth() {
-					return (138 * 0.5 * (414 / 375));
-					// return (138 * 0.5 * (document.documentElement.clientWidth / 375)) // # rem布局 计算宽度
+				page: 1,
+
+				start: 0,
+				end: 0,
+
+				list: [], // 列表
+				loading: true,
+
+				// 导航栏
+				config: {
+					title: "我是标题", //title
+					bgcolor: "#c1a379", //背景颜色
+					type: 1, //type 1，3胶囊 2，4无胶囊模式
+					transparent: false, //是否背景透明 默认白色
+					linear: true, //是为开启下滑渐变
+					share: false, //是否将主页按钮显示为分享按钮
+					menuIcon: "../../static/icon/back_.png", //当type为3或者4的时候左边的icon文件位置，注意位置与当前页面不一样
 				},
-				gutterWidth() {
-					return (9 * 0.5 * (414 / 375));
-					// return (9 * 0.5 * (document.documentElement.clientWidth / 375)) //# rem布局 计算x轴方向margin(y轴方向的margin自定义在css中即可)
-				}
+				scrollTop: 0, // 当linear为true的时候需要通过onpagescroll传递参数
+				scrollMaxHeight: 200 //滑动的高度限制，超过这个高度即背景全部显示
 			}
 		},
-		computed: {
-			
+		onPageScroll(e) {
+			this.scrollTop = e.scrollTop;
+		},
+		// mounted() {
+		// 	console.log('waterfall mounted')
+		// 	this.getList();
+		// },
+		onLoad() {
+			console.log('waterfall onLoad')
+			this.getList();
+		},
+		onReachBottom() {
+			console.log('waterfall onReachBottom')
+			this.page++;
+			this.loading = true;
+			this.getList();
 		},
 		methods: {
-			scroll(scrollData) {
-				console.log(scrollData)
+			//当config type 为 4或者3 的时候 自定义methods
+			customConduct() {
+				console.log("ssssss")
 			},
-			switchCol(col) {
-				this.col = col
-				console.log(this.col)
+			// 选中
+			choose(item) {
+				// item 返回选中 JSON 对象
+				console.log(item)
 			},
-			loadmore() {
-				this.data = this.data.concat(this.data)
-			},
-			mix() {
-				this.data = this.data.concat(this.data)
+			// 模拟加载数据
+			getList() {
+				if (this.list.length < data.list.length) {
+					console.log('this.list.length < data.list.length')
+					console.log('this.list', this.list)
+					console.log('data.list', data.list)
+					this.loading = true;
+					setTimeout(() => {
+						this.end = this.page * 10;
+						this.list = this.list.concat(data.list.slice(this.start, this.end));
+						this.start = this.end;
+
+						console.log('this.list 2', this.list)
+						// 延迟 120 毫秒隐藏加载动画，为了跟组件里面的 100 毫秒定位有个平缓过度
+						setTimeout(() => {
+							this.loading = false;
+						}, 120);
+					}, 1000)
+				} else {
+					this.loading = false;
+				}
 			}
 		}
 	}
 </script>
 
 <style>
+
 </style>

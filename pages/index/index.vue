@@ -3,7 +3,7 @@
 		<basics v-if="PageCur=='basics'" class="content"></basics>
 		<components v-if="PageCur=='component'" class="content"></components>
 		<plugin v-if="PageCur=='plugin'" class="content"></plugin>
-		<index-home v-if="PageCur=='index-home'" class="content"></index-home>
+		<index-home v-if="PageCur=='index-home'" class="content" ref="indexhome"></index-home>
 		<user-home v-if="PageCur=='user-home'" class="content"></user-home>
 
 		<view class="cu-bar tabbar bg-white shadow foot">
@@ -46,6 +46,12 @@
 		data() {
 			return {
 				PageCur: 'index-home'
+			}
+		},
+		onReachBottom() {
+			console.log('index-home onReachBottom')
+			if(this.PageCur=='index-home'){
+				this.$refs.indexhome.reachBottom();
 			}
 		},
 		methods: {

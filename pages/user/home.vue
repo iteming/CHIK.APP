@@ -44,11 +44,11 @@
 			nextPage: function() {
 				console.log("load next page");
 				let itemlist = this.waterfallItem;
-				console.log('x1', itemlist);
+				// console.log('x1', itemlist);
 				itemlist.forEach(item =>{
 					this.waterfallList.push(item);
 				})				
-				console.log('x2', this.waterfallList);
+				// console.log('x2', this.waterfallList);
 			},
 			clearLaunchFlag: function() {
 				uni.showModal({
