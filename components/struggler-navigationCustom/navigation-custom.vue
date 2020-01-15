@@ -1,6 +1,10 @@
 <template>
 	<view class="navigation-bar" :style="{height:height}">
 		<view class="navigation-bar-fixed" :style="{height:height,background:(!config.transparent&&!config.linear)?config.bgcolor:'transparent'}">
+			<!-- normal -->
+			<view v-if="[0].indexOf(config.type)!= -1" :class="'navigation-bar-textbox'" :style="{top:marginTop}">
+			</view>
+			
 			<!-- capsule or normal -->
 			<view v-if="[1,2].indexOf(config.type)!= -1" :class="config.type==1?'navigation-bar-capsule':'navigation-bar-textbox'"
 			 :style="{top:marginTop}">
@@ -88,7 +92,7 @@
 						title: "",
 						bgcolor: "",
 						fontcolor: "#000",
-						type: 3,
+						type: 0,
 						linear: true,
 						transparent: false,
 						menuIcon: "",

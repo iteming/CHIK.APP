@@ -34,6 +34,11 @@
 					color: '#e54d42'
 				},
 				{
+					title: '桔橙',
+					name: 'orange',
+					color: '#f37b1d'
+				},
+				{
 					title: '墨黑',
 					name: 'black',
 					color: '#333333'

@@ -45,7 +45,7 @@
 	export default {
 		data() {
 			return {
-				PageCur: 'index-home'
+				PageCur: 'user-home'
 			}
 		},
 		onReachBottom() {

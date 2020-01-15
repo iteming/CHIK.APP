@@ -1,17 +1,28 @@
 <template>
 	<view class="content">
-		<view>我的</view>
-		<view class="out-btn" @tap="clearLaunchFlag()">清除launchFlag值</view>
-		<view class="out-btn" @tap="GO()">GO</view>
+		<navigation-custom :config="config" />
 		
-		<view class="waterfall">
-			<view class="item" v-for="(item,index) in waterfallList" v-bind:key="index">
-				<view class="item-content">
-					{{index}} {{item}}
-				</view>
+		<view class="grid col-24 padding-sm">
+			Qiu Qiu
+		</view>
+		
+		<view class="cu-bar margin-top bg-white">
+			<view class="action">
+				<text class="cuIcon-title text-blue"></text>镂空按钮
+			</view>
+			<view class="action">
 			</view>
 		</view>
-		<view class="out-btn" @tap="nextPage()">加载下一页</view>
+		<view class="grid col-24 padding-sm">
+			<view class="margin-tb-sm text-center">
+				<button class="cu-btn round" :class="['lines-red','shadow']" @tap="clearFlag()">清除缓存</button>
+			</view>
+			
+			<view class="margin-tb-sm text-center">
+				<button class="cu-btn round" :class="['lines-black','shadow']" @tap="showFall()">瀑布布局</button>
+			</view>
+		</view>
+		
 	</view>
 </template>
 
@@ -19,38 +30,24 @@
 	export default {
 		data() {
 			return {
-				waterfallList: [],
-				waterfallItem: [
-					"三月到大理赏樱花不远不近",
-					"三月到大理赏樱花不远不近，才是最好的距离余生，请带上自己的阳光回忆，在部队那些日子被遗忘的花儿春光",
-					"三月到大理赏樱花不远不近，才是最好的距离余生，请带上自己的阳光回忆",
-					"三月到大理赏樱花不远不近，才是最好的距离余生，请带上自己的阳光回忆，在部队那些日子被遗忘的花儿春光",
-					"三月到大理赏樱花不远不近，三月到大理赏樱花不远不近，三月到大理赏樱花不远不近",
-					"三月到大理赏樱花不远不近，才是最好的距离余生，请带上自己的阳光回忆",
-				]
+				shadow: false,
+				bordersize: '',
+				
+				config: {
+					bgcolor: "#f37b1d", //背景颜色
+				},
 			}
 		},
 		mounted() {
 			console.log('user mounted')
-			this.nextPage();
 		},
 		methods: {
-			GO: function() {
-				
+			showFall: function() {
 				uni.navigateTo({
 					url: "/pages/user/waterfall"
 				})
 			},
-			nextPage: function() {
-				console.log("load next page");
-				let itemlist = this.waterfallItem;
-				// console.log('x1', itemlist);
-				itemlist.forEach(item =>{
-					this.waterfallList.push(item);
-				})				
-				// console.log('x2', this.waterfallList);
-			},
-			clearLaunchFlag: function() {
+			clearFlag: function() {
 				uni.showModal({
 					title: '清除launchFlag值',
 					content: '确定要清除launchFlag值，进行重启测试？',
@@ -95,39 +92,4 @@
 </script>
 
 <style lang="less">
-	.out-btn{
-		width: 660upx;
-		height: 80upx;
-		margin: 0 auto;
-		text-align: center;
-		line-height: 80upx;
-		background: #918984;
-		color: #FFFFFF;
-		border-radius: 40upx;
-	}
-	
-	.waterfall {
-		column-count: 2;
-		column-gap: 0;
-
-		.item {
-			box-sizing: border-box;
-			break-inside: avoid;
-			padding: 10px;
-		}
-
-		.item-content {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			padding: 10px;
-			height: auto;
-			font-size: 20px;
-			color: #686868;
-			box-sizing: border-box;
-			border: 1px solid #ccc;
-		}
-
-	}
 </style>
