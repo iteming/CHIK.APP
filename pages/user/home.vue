@@ -2,7 +2,7 @@
 	<view class="content">
 		<navigation-custom :config="config" />
 		
-		<view class="grid col-24 padding-sm">
+		<view class="grid col-24 padding-sm" style="width: auto; height: 500rpx; background-image:url(https://cdn.chik.cn/aboutMe.jpg)">
 			Qiu Qiu
 		</view>
 		

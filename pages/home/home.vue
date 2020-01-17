@@ -71,6 +71,9 @@
 			//当config type 为 5 的时候 自定义methods
 			customSearch() {
 				console.log("ssssss")
+				uni.navigateTo({
+					url: "/pages/home/search"
+				})
 			},
 			// cardSwiper
 			cardSwiper(e) {
