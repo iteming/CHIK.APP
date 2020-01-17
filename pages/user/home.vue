@@ -21,6 +21,10 @@
 			<view class="margin-tb-sm text-center">
 				<button class="cu-btn round" :class="['lines-black','shadow']" @tap="showFall()">瀑布布局</button>
 			</view>
+			
+			<view class="margin-tb-sm text-center">
+				<button class="cu-btn round" :class="['lines-black','shadow']" @tap="loginPage()">登录页面</button>
+			</view>
 		</view>
 		
 	</view>
@@ -34,7 +38,8 @@
 				bordersize: '',
 				
 				config: {
-					bgcolor: "#f37b1d", //背景颜色
+					bgcolor: "#e54d42", //背景颜色
+					type: 0,
 				},
 			}
 		},
@@ -45,6 +50,11 @@
 			showFall: function() {
 				uni.navigateTo({
 					url: "/pages/user/waterfall"
+				})
+			},
+			loginPage: function() {
+				uni.navigateTo({
+					url: "/pages/login/login"
 				})
 			},
 			clearFlag: function() {

@@ -17,22 +17,11 @@
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "首页",
-				"onReachBottomDistance":300
+				"onReachBottomDistance": 300
 			}
 		},
-		{
-			"path": "pages/user/waterfall",
-			"style": {
-				"navigationBarTitleText": "瀑布流"
-			}
-		},
-		{
-			"path": "pages/home/search",
-			"style": {
-				"navigationBarTitleText": "搜索页"
-			}
-		},
-		
+
+
 		// color ui 相关组件
 		{
 			"path": "pages/basics/layout",
@@ -117,21 +106,53 @@
 		{
 			"path": "pages/component/steps",
 			"style": {}
-		}, {
+		},
+		{
 			"path": "pages/plugin/indexes",
 			"style": {}
-		}, {
+		},
+		{
 			"path": "pages/plugin/animation",
 			"style": {}
-		}, {
+		},
+		{
 			"path": "pages/plugin/drawer",
 			"style": {}
-		}, {
+		},
+		{
 			"path": "pages/plugin/verticalnav",
 			"style": {}
-		}
-		
+		},
+
 		// 其他新建页面
+
+		// 登录注册相关
+		{
+			"path": "pages/login/login",
+			"style": {}
+		},
+		{
+			"path": "pages/login/forget",
+			"style": {}
+		},
+		{
+			"path": "pages/login/register",
+			"style": {}
+		},
+		// 瀑布流
+		{
+			"path": "pages/user/waterfall",
+			"style": {
+				"navigationBarTitleText": "瀑布流"
+			}
+		},
+		// 搜索页
+		{
+			"path": "pages/home/search",
+			"style": {
+				"navigationBarTitleText": "搜索页"
+			}
+		}
 	],
 	"globalStyle": {
 		"mp-alipay": {

@@ -63,4 +63,8 @@
 </script>
 
 <style>
+	.content {
+		background-color: #FFFFFF;
+		margin-bottom:100rpx;
+	}
 </style>

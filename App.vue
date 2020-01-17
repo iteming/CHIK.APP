@@ -65,8 +65,8 @@
 	@import "colorui/icon.css";
 
 	.content {
-		background-color: #FFFFFF;
-		margin-bottom:100rpx;
+		/* background-color: #FFFFFF; */
+		/* margin-bottom:100rpx; */
 	}
 	
 	.nav-list {

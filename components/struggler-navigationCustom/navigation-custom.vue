@@ -92,7 +92,7 @@
 						title: "",
 						bgcolor: "",
 						fontcolor: "#000",
-						type: 0,
+						type: 1,
 						linear: true,
 						transparent: false,
 						menuIcon: "",
