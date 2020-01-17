@@ -23,7 +23,11 @@
 			</view>
 			
 			<view class="margin-tb-sm text-center">
-				<button class="cu-btn round" :class="['lines-black','shadow']" @tap="loginPage()">登录页面</button>
+				<button class="cu-btn round" :class="['lines-black','shadow']" @tap="navPage('/pages/login/login')">登录页面</button>
+			</view>
+			
+			<view class="margin-tb-sm text-center">
+				<button class="cu-btn round" :class="['lines-black','shadow']" @tap="navPage('/pages/user/person')">userCenter</button>
 			</view>
 		</view>
 		
@@ -52,9 +56,9 @@
 					url: "/pages/user/waterfall"
 				})
 			},
-			loginPage: function() {
+			navPage: function(uri) {
 				uni.navigateTo({
-					url: "/pages/login/login"
+					url: uri
 				})
 			},
 			clearFlag: function() {

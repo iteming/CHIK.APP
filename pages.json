@@ -20,7 +20,110 @@
 				"onReachBottomDistance": 300
 			}
 		},
+		// color ui 相关组件
+		{
+			"path": "pages/basics/layout",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/background",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/text",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/icon",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/button",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/design",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/tag",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/avatar",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/progress",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/shadow",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/loading",
+			"style": {}
+		},
+		{
+			"path": "pages/component/bar",
+			"style": {}
+		},
+		{
+			"path": "pages/component/nav",
+			"style": {}
+		},
+		{
+			"path": "pages/component/list",
+			"style": {}
+		},
+		{
+			"path": "pages/component/card",
+			"style": {}
+		},
+		{
+			"path": "pages/component/form",
+			"style": {}
+		},
+		{
+			"path": "pages/component/timeline",
+			"style": {}
+		},
+		{
+			"path": "pages/component/chat",
+			"style": {}
+		},
+		{
+			"path": "pages/component/swiper",
+			"style": {}
+		},
+		{
+			"path": "pages/component/modal",
+			"style": {}
+		},
+		{
+			"path": "pages/component/steps",
+			"style": {}
+		},
+		{
+			"path": "pages/plugin/indexes",
+			"style": {}
+		},
+		{
+			"path": "pages/plugin/animation",
+			"style": {}
+		},
+		{
+			"path": "pages/plugin/drawer",
+			"style": {}
+		},
+		{
+			"path": "pages/plugin/verticalnav",
+			"style": {}
+		},
 
+		// 其他新建页面
+		
 		// 登录注册相关
 		{
 			"path": "pages/login/login",
@@ -95,124 +198,124 @@
 		// 		}
 		// 	]
 		// },
-		// color ui 相关组件 - basics
-		{
-			"root": "pages/basics",
-			"pages": [
-				{
-					"path": "layout",
-					"style": {}
-				},
-				{
-					"path": "background",
-					"style": {}
-				},
-				{
-					"path": "text",
-					"style": {}
-				},
-				{
-					"path": "icon",
-					"style": {}
-				},
-				{
-					"path": "button",
-					"style": {}
-				},
-				{
-					"path": "design",
-					"style": {}
-				},
-				{
-					"path": "tag",
-					"style": {}
-				},
-				{
-					"path": "avatar",
-					"style": {}
-				},
-				{
-					"path": "progress",
-					"style": {}
-				},
-				{
-					"path": "shadow",
-					"style": {}
-				},
-				{
-					"path": "loading",
-					"style": {}
-				}
-			]
-		},
-		// color ui 相关组件 - component
-		{
-			"root": "pages/component",
-			"pages": [
-				{
-					"path": "bar",
-					"style": {}
-				},
-				{
-					"path": "nav",
-					"style": {}
-				},
-				{
-					"path": "list",
-					"style": {}
-				},
-				{
-					"path": "card",
-					"style": {}
-				},
-				{
-					"path": "form",
-					"style": {}
-				},
-				{
-					"path": "timeline",
-					"style": {}
-				},
-				{
-					"path": "chat",
-					"style": {}
-				},
-				{
-					"path": "swiper",
-					"style": {}
-				},
-				{
-					"path": "modal",
-					"style": {}
-				},
-				{
-					"path": "steps",
-					"style": {}
-				}
-			]
-		},
-		// color ui 相关组件 - plugin
-		{
-			"root": "pages/plugin",
-			"pages": [
-				{
-					"path": "indexes",
-					"style": {}
-				},
-				{
-					"path": "animation",
-					"style": {}
-				},
-				{
-					"path": "drawer",
-					"style": {}
-				},
-				{
-					"path": "verticalnav",
-					"style": {}
-				}
-			]
-		}
+		// // color ui 相关组件 - basics
+		// {
+		// 	"root": "pages/basics",
+		// 	"pages": [
+		// 		{
+		// 			"path": "layout",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "background",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "text",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "icon",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "button",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "design",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "tag",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "avatar",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "progress",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "shadow",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "loading",
+		// 			"style": {}
+		// 		}
+		// 	]
+		// },
+		// // color ui 相关组件 - component
+		// {
+		// 	"root": "pages/component",
+		// 	"pages": [
+		// 		{
+		// 			"path": "bar",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "nav",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "list",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "card",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "form",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "timeline",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "chat",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "swiper",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "modal",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "steps",
+		// 			"style": {}
+		// 		}
+		// 	]
+		// },
+		// // color ui 相关组件 - plugin
+		// {
+		// 	"root": "pages/plugin",
+		// 	"pages": [
+		// 		{
+		// 			"path": "indexes",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "animation",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "drawer",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "verticalnav",
+		// 			"style": {}
+		// 		}
+		// 	]
+		// }
 	],
 	"globalStyle": {
 		"mp-alipay": {
